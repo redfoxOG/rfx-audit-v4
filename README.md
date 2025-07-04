@@ -41,7 +41,14 @@ location / {
 to your Nginx config if routes should resolve to `index.html`.
 
 ## Supabase Credentials
-Update `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` in `stack.env` or via environment variables. The frontend creates the Supabase client using these values.
+The application requires two environment variables for the Supabase client:
+
+```
+VITE_SUPABASE_URL
+VITE_SUPABASE_ANON_KEY
+```
+
+Set them in `stack.env`, a local `.env` file or as environment variables when running Docker. The client in `customSupabaseClient.js` reads these values via `import.meta.env`.
 
 ## Basic Scan Webhook
 When running a scan, the app invokes the Supabase function `n8n-proxy` with payload:
