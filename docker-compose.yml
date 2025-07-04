@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  frontend:
+    container_name: rfx-audit-v3
+    build: .
+    restart: always
+    ports:
+      - "3002:80"  # External port → internal nginx static server
+    environment:
+      - VITE_SUPABASE_URL=https://yourproject.supabase.co
+      - VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+    networks:
+      - core-services
+
+networks:
+  core-services:
+    external: true
