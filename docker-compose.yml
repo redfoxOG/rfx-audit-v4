@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   frontend:
-    container_name: rfx-audit-v3
+    container_name: rfx-audit-v4
     build: .
     restart: always
     ports:
@@ -11,8 +11,8 @@ services:
       - VITE_SUPABASE_URL=https://yourproject.supabase.co
       - VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
     networks:
-      - core-services
+      - core-services_stack_proxy-tier
 
 networks:
-  core-services:
+  core-services_stack_proxy-tier:
     external: true
