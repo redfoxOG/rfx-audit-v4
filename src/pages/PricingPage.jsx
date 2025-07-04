@@ -10,9 +10,7 @@ import { useAuth } from '@/contexts/SupabaseAuthContext';
 import { loadStripe } from '@stripe/stripe-js';
 import { supabase } from '@/lib/customSupabaseClient';
 
-// **ACTION REQUIRED**: Replace with your actual Stripe publishable key
-const STRIPE_PUBLISHABLE_KEY = "pk_test_YOUR_PUBLISHABLE_KEY"; 
-const stripePromise = loadStripe(STRIPE_PUBLISHABLE_KEY);
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 const PricingCard = ({ plan, onSelectPlan, isCurrentPlan, loadingPlan }) => (
   <Card className={`flex flex-col h-full ${isCurrentPlan ? 'border-crimson shadow-crimson/20' : ''}`}>
