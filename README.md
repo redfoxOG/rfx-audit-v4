@@ -6,7 +6,7 @@
 - Environment variables:
   - `VITE_SUPABASE_URL` – your Supabase project URL
   - `VITE_SUPABASE_ANON_KEY` – the Supabase anonymous key
-  - (optional) `VITE_STRIPE_PUBLISHABLE_KEY` for Stripe integration
+  - `VITE_STRIPE_PUBLISHABLE_KEY` – your Stripe publishable key
 
 ## Local Development
 1. Install dependencies:
@@ -26,6 +26,7 @@ docker build -t rfx-audit-v4 .
 docker run -p 3002:80 \
   -e VITE_SUPABASE_URL=https://yourproject.supabase.co \
   -e VITE_SUPABASE_ANON_KEY=YOUR_ANON_KEY \
+  -e VITE_STRIPE_PUBLISHABLE_KEY=YOUR_STRIPE_KEY \
   rfx-audit-v4
 ```
 Alternatively, use `docker-compose`:
@@ -41,7 +42,7 @@ location / {
 to your Nginx config if routes should resolve to `index.html`.
 
 ## Supabase Credentials
-Update `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` in `stack.env` or via environment variables. The frontend creates the Supabase client using these values.
+Update `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`, and `VITE_STRIPE_PUBLISHABLE_KEY` in `stack.env` or via environment variables. The frontend creates the Supabase and Stripe clients using these values.
 
 ## Basic Scan Webhook
 When running a scan, the app invokes the Supabase function `n8n-proxy` with payload:
