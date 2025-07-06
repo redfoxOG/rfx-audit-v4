@@ -3,7 +3,12 @@ version: '3.8'
 services:
   frontend:
     container_name: rfx-audit-v4
-    build: .
+    build:
+      context: .
+      args:
+        - VITE_SUPABASE_URL
+        - VITE_SUPABASE_ANON_KEY
+        - VITE_STRIPE_PUBLISHABLE_KEY
     restart: always
     ports:
       - "3002:80"  # External port → internal nginx static server
