@@ -3,12 +3,17 @@ version: '3.8'
 services:
   frontend:
     container_name: rfx-audit-v4
+    env_file: stack.env
     build:
       context: .
       args:
-        - VITE_SUPABASE_URL
-        - VITE_SUPABASE_ANON_KEY
-        - VITE_STRIPE_PUBLISHABLE_KEY
+        VITE_SUPABASE_URL: ${VITE_SUPABASE_URL}
+        VITE_SUPABASE_ANON_KEY: ${VITE_SUPABASE_ANON_KEY}
+        VITE_STRIPE_PUBLISHABLE_KEY: ${VITE_STRIPE_PUBLISHABLE_KEY}
+    environment:
+      VITE_SUPABASE_URL: ${VITE_SUPABASE_URL}
+      VITE_SUPABASE_ANON_KEY: ${VITE_SUPABASE_ANON_KEY}
+      VITE_STRIPE_PUBLISHABLE_KEY: ${VITE_STRIPE_PUBLISHABLE_KEY}
     restart: always
     ports:
       - "3002:80"  # External port → internal nginx static server
