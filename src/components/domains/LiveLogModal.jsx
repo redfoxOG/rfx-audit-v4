@@ -1,5 +1,4 @@
-
-    import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
     import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
     import { Terminal, Loader2 } from 'lucide-react';
     import { supabase } from '@/lib/customSupabaseClient';
@@ -96,4 +95,3 @@
     };
 
     export default LiveLogModal;
-  
