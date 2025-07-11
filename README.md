@@ -40,7 +40,15 @@ npm run preview      # serve built assets for testing
 
 ## Docker
 
-A Dockerfile is not provided, but the app can be containerised. Build an image using Node 20, copy the project files, run `npm install` followed by `npm run build`, and serve the `dist/` directory with a static file server such as `serve` or Nginx.
+This repository now includes a Dockerfile and compose file for easy deployment. The image builds the production assets using Node 20 and serves the `dist/` directory with `serve`.
+
+### Local usage
+
+```bash
+docker compose up --build
+```
+
+The container listens on port `4173` (mapped to `8080` by default in `docker-compose.yml`). Portainer can deploy the stack directly from this repository using the compose file.
 
 ## License
 
