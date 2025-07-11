@@ -46,14 +46,24 @@ const SettingsPage = () => {
 
   const [apiSettings, setApiSettings] = useState({ nvdApiKey: '', shodanApiKey: '', virusTotalApiKey: '' });
   const [notificationSettings, setNotificationSettings] = useState({ emailNotifications: true, webhookUrl: '' });
-  const [n8nSettings, setN8nSettings] = useState({ n8nWebhookUrl: '', triggerOnCompletion: false, selectedN8nWorkflowApi: '' });
+  const [n8nSettings, setN8nSettings] = useState({
+    n8nWebhookUrl: import.meta.env.VITE_N8N_WEBHOOK_URL || process.env.N8N_WEBHOOK_URL || '',
+    triggerOnCompletion: false,
+    selectedN8nWorkflowApi: ''
+  });
   const [generalAppSettings, setGeneralAppSettings] = useState({ theme: 'dark', defaultScanProfile: 'balanced' });
 
   useEffect(() => {
     if (profile) {
       setApiSettings(profile.api_keys || { nvdApiKey: '', shodanApiKey: '', virusTotalApiKey: '' });
       setNotificationSettings(profile.notification_settings || { emailNotifications: true, webhookUrl: '' });
-      setN8nSettings(profile.automation_settings || { n8nWebhookUrl: '', triggerOnCompletion: false, selectedN8nWorkflowApi: '' });
+      setN8nSettings(
+        profile.automation_settings || {
+          n8nWebhookUrl: import.meta.env.VITE_N8N_WEBHOOK_URL || process.env.N8N_WEBHOOK_URL || '',
+          triggerOnCompletion: false,
+          selectedN8nWorkflowApi: ''
+        }
+      );
       setGeneralAppSettings({
         theme: profile.theme || 'dark',
         defaultScanProfile: profile.default_scan_profile || 'balanced',
@@ -78,7 +88,6 @@ const SettingsPage = () => {
 
   const handleSaveSettings = useCallback(async (category) => {
     if (!user) return;
-
     let updateData = {};
     let successMessage = '';
 
