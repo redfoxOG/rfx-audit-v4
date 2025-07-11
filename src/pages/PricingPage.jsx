@@ -9,8 +9,7 @@ import { useAuth } from '@/contexts/SupabaseAuthContext';
 import { loadStripe } from '@stripe/stripe-js';
 import { supabase } from '@/lib/customSupabaseClient';
 
-// **ACTION REQUIRED**: Replace with your actual Stripe publishable key
-const STRIPE_PUBLISHABLE_KEY = "pk_test_YOUR_PUBLISHABLE_KEY"; 
+const STRIPE_PUBLISHABLE_KEY = import.meta.env.VITE_STRIPE_SECRET_KEY || process.env.VITE_STRIPE_SECRET_KEY;
 const stripePromise = loadStripe(STRIPE_PUBLISHABLE_KEY);
 
 const PricingCard = ({ plan, onSelectPlan, isCurrentPlan, loadingPlan }) => (
